@@ -1,0 +1,62 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-2.17.0.min.css" />
+</head>
+
+<body>
+	<div style="width:300px;top:30px;position:absolute;left:30px">
+		<form class="p-search-box" style="margin-bottom:0">
+			<input type="search" class="p-search-box__input" name="search" placeholder="Search" autocomplete="off"
+				style="padding-left:25px;padding-right:25px" onkeyup="inputvaluechange(value)">
+			<i class="p-icon--search" style="position:absolute;top:10px;left:5px"></i>
+			<button type="reset" onclick="inputvaluechange('')" style="display:none" class="p-search-box__reset"
+				id="resetButton" alt="reset"><i class="p-icon--close"></i></button>
+		</form>
+		<div id="parentObj">
+			<ul class="p-list" id="dropdownlist" style="padding-left:10px;border:1px solid;">
+
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		var data = ["student on the bus", "useless stuff", "stubhub tickets", "user study", "angular", "bootstrap", "css", "docker", "express", "html", "ajax", "jquery", "javascript", "reactjs", "react native", "redux", "flux", "nodejs", "java", "babeljs", "comminjs", "chartjs", "jenkins", "feature box", "oracle", "mysql", "mongodb", "graphql", "github", "bitbucket", "cvs", "subversion", "agile", "scrum", "css2", "css3", "sass", "less", "php", "web api", "wordpress", "netbeans", "adobe dreamweaver", "edit plus", "eclipse", "intellij", "vscode", "emberjs", "d3js"];
+		function inputvaluechange(v) {
+			if (v) {
+				document.getElementById('resetButton').style.display = 'block';
+				var a = document.getElementById("dropdownlist");
+				var c = "";
+				var f = 1;
+				data.forEach((element) => {
+					if (element.includes(v)) {
+						let x = element.replace(v, '<b>' + v + '</b>');
+						c = c + '<li class="p-list_item">' + x + '</li>';
+						f = f + 1;
+					}
+				});
+				document.getElementById("dropdownlist").innerHTML = c;
+				if (f > 5) {
+					document.getElementById("parentObj").style.overflow = "hidden";
+					document.getElementById("parentObj").style.height = "140px";
+					document.getElementById("dropdownlist").style.overflow = "scroll";
+					document.getElementById("dropdownlist").style.height = "100%";
+				} else {
+					document.getElementById("parentObj").style.overflow = "hidden";
+					document.getElementById("parentObj").style.height = "130px";
+					document.getElementById("dropdownlist").style.overflow = "hidden";
+					document.getElementById("dropdownlist").style.height = "120px";
+				}
+			} else {
+				document.getElementById('resetButton').style.display = 'none';
+				document.getElementById("dropdownlist").innerHTML = "";
+				document.getElementById("parentObj").style.overflow = "hidden";
+				document.getElementById("parentObj").style.height = "0px";
+				document.getElementById("dropdownlist").style.overflow = "hidden";
+				document.getElementById("dropdownlist").style.height = "0px";
+			}
+		}
+	</script>
+</body>
+
+</html>
